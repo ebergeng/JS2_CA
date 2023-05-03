@@ -1,5 +1,15 @@
 import { login } from "../../../api/auth/login.mjs";
 
+/**
+ * Registers a form listener on the #loginForm element that listens for a submit event.
+ * When the form is submitted, it prevents the default form submission behavior, extracts the form data,
+ * and logs in the user using the `login` function.
+ *
+ * @function
+ * @name loginFormListner
+ * @returns {void}
+ */
+
 export function loginFormListner() {
     const form = document.querySelector("#loginForm");
 
@@ -10,6 +20,6 @@ export function loginFormListner() {
         const formData = new FormData(form);
         const profile = Object.fromEntries(formData.entries());
         
-        const respons = await(login(profile));
+        await(login(profile));
     })
 }
