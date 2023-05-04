@@ -13,20 +13,21 @@ import { REG_URL } from "../constants.mjs"
 
 export async function register(profile) {
 
-    try {
-        console.log(REG_URL)
-        const respons = await fetch(REG_URL, {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "post",
-            body: JSON.stringify(profile)
-        })
-    
-        return await respons.json()
-    }catch(err) {
-        console.log(err)
+    const options = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        method: "post",
+        body: JSON.stringify(profile)
     }
-}
 
-register()
+    const respons = await fetch(REG_URL, options)
+
+    if(!respons.ok) {
+        const error = await respons.json();
+        const errorMessage = error.errors[0].message;
+        throw new Error(errorMessage)
+    }
+    
+    return await respons.json()
+}
