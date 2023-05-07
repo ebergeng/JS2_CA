@@ -10,4 +10,6 @@ switch(path){
     case "/profile/register/":
         page.register()
         break
+    case "/feed/":
+        page.feed()
 }   

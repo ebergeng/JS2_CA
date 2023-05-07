@@ -1,15 +1,16 @@
 import { getHeader } from "../../helpers/header.mjs";
 import { POST_URL } from "../constants.mjs";
 
-export async function getPosts (limit=10) {
+export async function getPosts (limit=9, offset=0) {
     
     limit = `&limit=${limit}`
+    offset = `&offset=${offset}`
     const options = {
         headers : getHeader(),
         method: "GET"
     }
 
-    const respons = await fetch(POST_URL + limit , options)
+    const respons = await fetch(POST_URL + limit + offset , options)
     
     if(!respons.ok) {
         const error = await respons.json();
