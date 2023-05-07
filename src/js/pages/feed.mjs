@@ -24,8 +24,11 @@ export function addPostsToFeed(posts) {
 
 
 export async function feed() {
-    
-    const posts = await getPosts(9, 9);
+    const newPost = {
+        title: "This is a new post",
+        body: "testing post"
+    }
+    const posts = await getPosts(9, 0);
     addPostsToFeed(posts)
     genMorePosts()
 

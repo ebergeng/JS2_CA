@@ -1,3 +1,11 @@
+/**
+ * Creates a new post card element with the provided post data.
+ *
+ * @function
+ * @name postTemplate
+ * @param {Object} postData - The post data to be used for creating the card.
+ * @returns {HTMLElement} - The post card element.
+ */
 export function postTemplate(postData) {
     const card = document.createElement("div");
     card.classList.add("card");
@@ -14,7 +22,7 @@ export function postTemplate(postData) {
     cardBody.href = `/post/?id=${postData.id}`
 
     const cardTitle = document.createElement("h5");
-    cardTitle.innerText = postData.title
+    cardTitle.innerText = postData.id
     cardBody.append(cardTitle)
 
 
