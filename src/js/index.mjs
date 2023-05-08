@@ -1,4 +1,3 @@
-import { editButton } from "./components/eventlistners/buttonlistners/editProfileBtn.mjs"
 import * as page from "./pages/index.mjs"
 
 
@@ -13,8 +12,10 @@ switch(path){
         break
     case "/feed/":
         page.feed()
+        break
     case "/profile/":
-        editButton()
+        
         page.profile()
+        break
 
 }   

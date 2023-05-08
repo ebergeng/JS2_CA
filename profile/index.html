@@ -39,14 +39,14 @@
               <div class="container">
                 <div class="card col-lg-4 col-md-6 col-12">
                   <div class="profileHeading bg-primary d-flex justify-content-between">
-                    <h3>TestUser</h3>
-                    <button class="btn" id="edit-button">Edit</button>
+                    <h3 id="profile-name">TestUser</h3>
+                    <button class="btn d-none" id="edit-button">Edit</button>
                   </div>
                   <div class="profileBody p-2" id="profile-body">
-                    <img src="/img/user.png" alt="" class="card-img-top p-5">
-                    <p class="ms-2">followers: <span>0</span></p>
-                    <p class="ms-2">following: <span>0</span></p>
-                    <button class="btn btn-primary p-2 col-12">Follow TestUSer</button>
+                    <img src="/img/user.png" alt="" class="card-img-top p-5" id="profile-img">
+                    <p class="ms-2">followers: <span id="followers">0</span></p>
+                    <p class="ms-2">following: <span id="following">0</span></p>
+                    <button class="btn btn-primary p-2 col-12" id="follow-button">Follow TestUSer</button>
                   </div>
                   <div class="edit p-2 d-none" id="edit-body">
                     <form id="updateForm">

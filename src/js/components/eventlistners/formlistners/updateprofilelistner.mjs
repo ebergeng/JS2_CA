@@ -1,5 +1,5 @@
-import { edit } from "../../../api/auth/edit.mjs";
-import { getProfileName } from "../../../helpers/lokalstore.mjs";
+import { edit } from "../../../api/profiles/edit.mjs";
+import { getLocalStoreName } from "../../../helpers/lokalstore.mjs";
 
 export async function updateFormListner() {
     const form = document.querySelector("#updateForm");
@@ -10,8 +10,7 @@ export async function updateFormListner() {
         const form = event.target;
         const formData = new FormData(form);
         const update = Object.fromEntries(formData.entries());
-        const profileName = await getProfileName()
-        console.log(name)
+        const profileName = await getLocalStoreName()
         
         const response = await edit(update, profileName);
         if(response){
