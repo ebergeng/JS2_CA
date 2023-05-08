@@ -1,0 +1,21 @@
+.card a{
+    text-decoration: none;
+    
+}
+
+.postHeading {
+    background-color: $primary;
+}
+
+.postHeading a {
+    color: white;
+    
+}
+
+.card {
+    margin: 5px;
+}
+
+.cardBody p, .cardBody h3 {
+    color: black;
+}
