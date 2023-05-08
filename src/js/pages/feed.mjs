@@ -1,12 +1,14 @@
 import { getPosts } from "../api/post/read.mjs";
-import { postTemplate } from "../api/templates/post.mjs";
 import { genMorePosts } from "../components/eventlistners/buttonlistners/morepostbtn.mjs";
+import { postMenu } from "../components/eventlistners/buttonlistners/postBtn.mjs";
+import { postTemplate } from "../ui/post.mjs";
 
 const postContainer = document.querySelector("#postContainer")
 
 
 export function addPostsToFeed(posts) {
     console.log("working")
+    
 
     for(let i = 0; i < posts.length; i += 3) {
         const postGroup = document.createElement("div");
@@ -16,9 +18,13 @@ export function addPostsToFeed(posts) {
         grupedPosts.forEach(post => {
             const genPost = postTemplate(post);
             postGroup.append(genPost)
+            
         });
 
         postContainer.append(postGroup)
+        postMenu()
+        
+        
     }
 }
 
@@ -31,6 +37,7 @@ export async function feed() {
     const posts = await getPosts(9, 0);
     addPostsToFeed(posts)
     genMorePosts()
+
 
 
     
