@@ -1,2 +1,4 @@
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
-@import "./components/posts"
+@import "./variables";
+@import "./components/posts";
+@import "./components/profilecard.scss";

@@ -13,7 +13,7 @@ export function postTemplate(postData) {
     const postNav = document.createElement("div");
     postNav.classList.add("postHeading")
     postNav.innerHTML = `<div class="container-fluid d-flex justify-content-between">
-                            <a href="/profile/?name=${postData.author.name}">
+                            <a href="/profile/?name=${postData.author.name.toString()}">
                                 <h4>${postData.author.name}</h4>
                                 <p>${postData.author.email}</p>
                             </a>
@@ -40,7 +40,7 @@ export function postTemplate(postData) {
 
 
     const cardText = document.createElement("p");
-    cardText.innerText = postData.body.slice(0, 30)
+    cardText.innerText = postData.body
     cardBody.append(cardText)
 
     return card
