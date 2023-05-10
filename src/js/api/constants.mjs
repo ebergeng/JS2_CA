@@ -4,3 +4,4 @@ export const REG_URL = `${BASE}/auth/register`
 export const POST_URL = `${BASE}/posts?&_author=true&_comments=true`
 export const CREATE_POST_URL = `${BASE}/posts`
 export const DELETE_POST_URL = `${BASE}/posts/`
+export const PROFILE_URL = `${BASE}/profiles/`

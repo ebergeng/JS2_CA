@@ -12,4 +12,10 @@ switch(path){
         break
     case "/feed/":
         page.feed()
+        break
+    case "/profile/":
+        
+        page.profile()
+        break
+
 }   
