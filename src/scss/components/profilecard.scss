@@ -44,3 +44,20 @@ button {
     color: white;
     font-weight: 600;
 }
+
+#edit-button {
+    width: 50px;
+    background-color: transparent;
+    border: none;
+
+}
+
+#edit-button:hover {
+    width: 55px;
+}
+
+
+#edit-button img {
+    width: 100%;
+
+}
