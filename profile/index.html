@@ -35,42 +35,54 @@
 
       <main class="flex-grow-1 mt-5">
         <div class="container-fluid">
-            <div class="row justify-content-center">
-              <div class="container">
-                <div class="card col-lg-4 col-md-6 col-12">
-                  <div class="profileHeading bg-primary d-flex justify-content-between">
-                    <h3 id="profile-name">TestUser</h3>
-                    <button class="btn d-none" id="edit-button">Edit</button>
+            <div class="row">
+              <div class="card col-lg-4 col-md-6 col-12 p-0 profile-card">
+                <div class="profileHeading position-relative d-flex justify-content-between m-0 pt-4 pb-4" >
+                  <div class="banner-info d-flex justify-content-between m-0 pt-4 pb-4">
+                    <h3 id="profile-name" class="ms-3">TestUser</h3>
+                    <button type="button" class="d-none" id="edit-button" aria-label="Close">
+                      <img src="/img/settings.png" alt="">
+                    </button>
                   </div>
-                  <div class="profileBody p-2" id="profile-body">
-                    <img src="/img/user.png" alt="" class="card-img-top p-5" id="profile-img">
-                    <p class="ms-2">followers: <span id="followers">0</span></p>
-                    <p class="ms-2">following: <span id="following">0</span></p>
-                    <button class="btn btn-primary p-2 col-12" id="follow-button">Follow TestUSer</button>
-                  </div>
-                  <div class="edit p-2 d-none" id="edit-body">
-                    <form id="updateForm">
-                      <div class="form-group mb-2">
-                          <label for="name">User Name</label>
-                          <input class="form-control" type="text" name="name" required pattern="^[\w]+$" maxlength="20" disabled placeholder="testuser">
-                      </div>
-                      <div class="form-group mb-2">
-                          <label for="email">Email</label>
-                          <input class="form-control" type="email" name="email" required pattern="^[\w\-.]+@(stud\.)?noroff\.no$" disabled placeholder="testuser@noroff.no">
-                      </div>
-                      <div class="form-group mb-2">
-                          <label for="banner">Banner</label>
-                          <input class="form-control" type="url" name="banner">
-                      </div>
-                      <div class="form-group mb-2">
-                          <label for="avatar">Avatar</label>
-                          <input class="form-control" type="url" name="avatar">
-                      </div>
-                      <button class="btn btn-primary col-12">Update</button>
-                    </form>
-                  </div>
+
+                </div>
+                <div class="profileBody p-2" id="profile-body">
+                  <img src="/img/user.png" alt="" class="card-img-top p-2" id="profile-img">
+                <div class="follow-container">
+                  <p class="ms-2">followers: <span id="followers">0</span></p>
+                  <p class="ms-2">following: <span id="following">0</span></p>
+                  <button class="btn btn-primary p-2 col-12" id="follow-button">Follow TestUSer</button>
+                </div>
+
+                </div>
+                <div class="edit p-2 d-none" id="edit-body">
+                  <form id="updateForm">
+                    <div class="form-group mb-2">
+                        <label for="name">User Name</label>
+                        <input class="form-control" type="text" name="name" required pattern="^[\w]+$" maxlength="20" disabled placeholder="testuser" id="name">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="email">Email</label>
+                        <input class="form-control" type="email" name="email" required pattern="^[\w\-.]+@(stud\.)?noroff\.no$" disabled placeholder="testuser@noroff.no" id="email">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="banner">Banner</label>
+                        <input class="form-control" type="url" name="banner">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="avatar">Avatar</label>
+                        <input class="form-control" type="url" name="avatar">
+                    </div>
+                    <button class="btn btn-primary col-12">Update</button>
+                  </form>
                 </div>
               </div>
+              <div class="div col">
+                <div class="heading">
+                  <img src='https://photojournal.jpl.nasa.gov/jpegMod/PIA25330_modest.jpg' alt="" class="banner" width="100%">
+                </div>
+              </div>
+        
 
             </div>
         </div>

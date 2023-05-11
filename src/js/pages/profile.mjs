@@ -14,7 +14,7 @@ export async function profile() {
     const urlParams = new URLSearchParams(window.location.search);
     let profileName = urlParams.get('name');
 
-    let porfileData;
+
     if(profileName) {
         profileTemplate(await getProfile(profileName))
     }

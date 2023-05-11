@@ -9,17 +9,22 @@ export async function profileTemplate(profileData) {
     const followers = document.querySelector("#followers");
     const following = document.querySelector("#following");
     const followBtn = document.querySelector("#follow-button");
+    const profileHeading = document.querySelector(".profile-card")
+
+    const nameInput = document.querySelector("input[name]")
+    const emailInput = document.querySelector("#email")
 
     if(profileData.email === await getLocalStoreEmail() ) {
         editBtn.classList.remove("d-none")
         followBtn.classList.add("d-none")
     }
-    try {
+
+    if (profileData.avatar) {
         profielImg.src = `${profileData.avatar}`
-    }catch(err){
-        console.log(err)
+    }else {
         profielImg.src = "/img/user.png"
     }
+
     profileName.innerHTML = profileData.name
     followers.innerHTML = profileData._count.followers
     following.innerHTML = profileData._count.following
@@ -28,5 +33,12 @@ export async function profileTemplate(profileData) {
         followBtn.innerHTML = `Unfollow`
     }else {
         followBtn.innerHTML = `Follow`
+    }
+
+    nameInput.value = profileData.name
+    emailInput.value = profileData.email
+    if(profileData.banner) {
+        profileHeading.style.backgroundImage = `url(${profileData.banner})`
+        profileHeading.style.display = "block";
     }
 }

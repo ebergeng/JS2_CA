@@ -1,0 +1,63 @@
+
+.profile-card {
+    height: fit-content;
+}
+
+.profileHeading, h3{
+    color: white;
+    height: 85px;
+}
+
+button {
+    background-color: white;
+}
+
+
+
+.banner-info {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 85px;
+    background-color: grayscale($color: #00000080);
+}
+
+#profile-img {
+    height: 25%;
+    width: auto;
+    display: flex;
+    max-height: 250px;
+    max-width: 350px;
+    margin: auto;
+}
+
+.follow-container {
+    background-color: grayscale($color: #00000080);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.follow-container p {
+    color: white;
+    font-weight: 600;
+}
+
+#edit-button {
+    width: 50px;
+    background-color: transparent;
+    border: none;
+
+}
+
+#edit-button:hover {
+    width: 55px;
+}
+
+
+#edit-button img {
+    width: 100%;
+
+}

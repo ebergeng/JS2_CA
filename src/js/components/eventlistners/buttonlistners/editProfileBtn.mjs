@@ -10,6 +10,7 @@ export function editButton() {
             editBody.classList.remove("d-none")
             profileBody.classList.add("d-none")
             displayEdit = false
+            
         }else {
             editBody.classList.add("d-none")
             profileBody.classList.remove("d-none")

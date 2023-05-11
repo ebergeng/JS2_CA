@@ -1,5 +1,4 @@
 import { getHeader } from "../../helpers/header.mjs"
-import { load } from "../../helpers/lokalstore.mjs"
 import { PROFILE_URL } from "../constants.mjs"
 
 export async function getProfile(name) {

@@ -6,8 +6,8 @@ export async function genMorePosts() {
 
     let numberOfpost = 6
     morePostBtn.addEventListener("click", async () => {
-        numberOfpost += 3
-        const posts = await getPosts(3, numberOfpost)
+        numberOfpost += 6
+        const posts = await getPosts(6, numberOfpost)
         addPostsToFeed(posts)
         
     })
