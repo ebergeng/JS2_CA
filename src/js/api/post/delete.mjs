@@ -7,12 +7,12 @@ export async function removePost (id) {
         headers : getHeader(),
         method: "DELETE",
     }
-    const respons = await fetch(DELETE_POST_URL + id , options)
+    const respons = await fetch(DELETE_POST_URL + id , options);
     
     if(!respons.ok) {
         const error = await respons.json();
         const errorMessage = error.errors[0].message;
-        throw new Error(errorMessage)
+        throw new Error(errorMessage);
     }
-    window.location.reload()
-}
+    window.location.reload();
+};

@@ -16,12 +16,12 @@ import { getLocalStoreEmail } from "../helpers/lokalstore.mjs";
  */
 export class PostTemplate {
     constructor (postData) {
-        this.postId = postData.id
-        this.title = postData.title
-        this.body = postData.body
-        this.authorName = postData.author.name
-        this.authorEmail = postData.author.email
-        this.img = postData.media
+        this.postId = postData.id;
+        this.title = postData.title;
+        this.body = postData.body;
+        this.authorName = postData.author.name;
+        this.authorEmail = postData.author.email;
+        this.img = postData.media;
     }
     /**
      * Generates the HTML for the post template.
@@ -32,25 +32,28 @@ export class PostTemplate {
      * @returns {Promise<HTMLDivElement>} - The post template HTML element.
      */
     async generateHTML() {
-        const postContainer = document.createElement("div")
-        postContainer.classList.add("card")
+        const postContainer = document.createElement("div");
+        postContainer.classList.add("card");
 
-        const postInfo = document.createElement("div")
-        postInfo.classList.add("postHeading")
+        const postInfo = document.createElement("div");
+        postInfo.classList.add("postHeading");
         if(this.authorEmail === await getLocalStoreEmail()) {
-            const postInfoWrapper = document.createElement("div")
-            const postProfileName = document.createElement("a")
-            postProfileName.href = `href="/profile/?name=${this.authorName}`
-            postProfileName.innerHTML = `<h4>${this.authorName}</h4>`
-            const delButton = document.createElement("button")  
-            delButton.innerText = "Delete"
-            this.delButtonListner(delButton)
-            const editButton = document.createElement("button")
-            editButton.innerText = "Edit"
-            this.editButtonListner(editButton)
-            postInfoWrapper.append(postProfileName, delButton, editButton)
-            postInfo.append(postInfoWrapper)
+            const postInfoWrapper = document.createElement("div");
+            
+            const postProfileName = document.createElement("a");
+            postProfileName.href = `href="/profile/?name=${this.authorName}`;
+            postProfileName.innerHTML = `<h4>${this.authorName}</h4>`;
 
+            const delButton = document.createElement("button");
+            delButton.innerText = "Delete";
+            this.delButtonListner(delButton);
+            
+            const editButton = document.createElement("button");
+            editButton.innerText = "Edit";
+            this.editButtonListner(editButton);
+            
+            postInfoWrapper.append(postProfileName, delButton, editButton);
+            postInfo.append(postInfoWrapper);
 
         }else {
             postInfo.innerHTML = 
@@ -59,32 +62,32 @@ export class PostTemplate {
                                         <h4>${this.authorName}</h4>
                                         <div>${this.authorEmail}</div>
                                     </a>
-                                </div>`
+                                </div>`;
         }
-        postContainer.append(postInfo)
+        postContainer.append(postInfo);
 
-        const postBodyWrapper = document.createElement("a")
-        postBodyWrapper.href = `/post/?id=${this.postId}`
+        const postBodyWrapper = document.createElement("a");
+        postBodyWrapper.href = `/post/?id=${this.postId}`;
         
         const postTitle = document.createElement("h2");
-        postTitle.innerText = this.title
-        postBodyWrapper.append(postTitle)
+        postTitle.innerText = this.title;
+        postBodyWrapper.append(postTitle);
 
         const img = document.createElement("img");
         if(this.img) {
-            img.src = this.img
-            img.alt = `image for post with title ${this.title}`
+            img.src = this.img;
+            img.alt = `image for post with title ${this.title}`;
         }
         img.classList.add("card-img-top");
         postBodyWrapper.append(img);
 
 
         const postBody = document.createElement("p");
-        postBody.innerText = this.body
-        postBodyWrapper.append(postBody)
+        postBody.innerText = this.body;
+        postBodyWrapper.append(postBody);
 
-        postContainer.append(postBodyWrapper)
-        return postContainer
+        postContainer.append(postBodyWrapper);
+        return postContainer;
     }
 
     /**
@@ -97,8 +100,10 @@ export class PostTemplate {
      * @returns {Promise<void>}
      */
     async appendToParrent(parrent) {
-        parrent.append(await this.generateHTML())
+        parrent.append(await this.generateHTML());
     }
+
+
 
     /**
      * Adds a click event listener to the delete button.
@@ -110,7 +115,7 @@ export class PostTemplate {
      */
     delButtonListner(button) {
         button.addEventListener("click", () => {
-            removePost(this.postId)
+            removePost(this.postId);
         })
     }
 
@@ -124,7 +129,7 @@ export class PostTemplate {
      */
     editButtonListner(button) {
         button.addEventListener("click", () => {
-            console.log(this.postId)
+            console.log(this.postId);
         })
-    }
+    };
 }

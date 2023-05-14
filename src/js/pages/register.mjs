@@ -3,5 +3,5 @@ import { registerFormListner } from "../components/eventlistners/formlistners/re
 
 
 export function register() {
-    registerFormListner()
+    registerFormListner();
 }

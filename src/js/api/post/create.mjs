@@ -24,7 +24,7 @@ export async function createPost (newPost) {
     if(!respons.ok) {
         const error = await respons.json();
         const errorMessage = error.errors[0].message;
-        throw new Error(errorMessage)
+        throw new Error(errorMessage);
     }
-    return true
-}
+    return true;
+};
