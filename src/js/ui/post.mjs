@@ -1,47 +1,128 @@
+import { removePost } from "../api/post/delete.mjs";
+import { getLocalStoreEmail } from "../helpers/lokalstore.mjs";
+
 /**
- * Creates a new post card element with the provided post data.
+ * A class representing a post template.
  *
- * @function
- * @name postTemplate
- * @param {Object} postData - The post data to be used for creating the card.
- * @returns {HTMLElement} - The post card element.
+ * @class
+ * @name PostTemplate
+ * @param {Object} postData - The post data.
+ * @param {string} postData.id - The post ID.
+ * @param {string} postData.title - The post title.
+ * @param {string} postData.body - The post body.
+ * @param {string} postData.author.name - The name of the post author.
+ * @param {string} postData.author.email - The email of the post author.
+ * @param {string} postData.media - The media URL of the post.
  */
-export function postTemplate(postData) {
-    const card = document.createElement("div");
-    card.classList.add("card");
+export class PostTemplate {
+    constructor (postData) {
+        this.postId = postData.id
+        this.title = postData.title
+        this.body = postData.body
+        this.authorName = postData.author.name
+        this.authorEmail = postData.author.email
+        this.img = postData.media
+    }
+    /**
+     * Generates the HTML for the post template.
+     *
+     * @async
+     * @function
+     * @name generateHTML
+     * @returns {Promise<HTMLDivElement>} - The post template HTML element.
+     */
+    async generateHTML() {
+        const postContainer = document.createElement("div")
+        postContainer.classList.add("card")
 
-    const postNav = document.createElement("div");
-    postNav.classList.add("postHeading")
-    postNav.innerHTML = `<div class="container-fluid d-flex justify-content-between">
-                            <a href="/profile/?name=${postData.author.name.toString()}">
-                                <h4>${postData.author.name}</h4>
-                                <p>${postData.author.email}</p>
-                            </a>
-                        </div>`
+        const postInfo = document.createElement("div")
+        if(this.authorEmail === await getLocalStoreEmail()) {
+            const postInfoWrapper = document.createElement("div")
+            const postProfileName = document.createElement("a")
+            postProfileName.href = `href="/profile/?name=${this.authorName}`
+            postProfileName.innerHTML = `<h4>${this.authorName}</h4>`
+            const delButton = document.createElement("button")  
+            delButton.innerText = "Delete"
+            this.delButtonListner(delButton)
+            const editButton = document.createElement("button")
+            editButton.innerText = "Edit"
+            this.editButtonListner(editButton)
+            postInfoWrapper.append(postProfileName, delButton, editButton)
+            postInfo.append(postInfoWrapper)
 
-    card.append(postNav)
 
-    const cardBody = document.createElement("a");
-    cardBody.classList.add("cardBody")
-    card.append(cardBody)
-    cardBody.href = `/post/?id=${postData.id}`
+        }else {
+            postInfo.innerHTML = 
+                                `<div class="container-fluid d-flex justify-content-between">
+                                    <a href="/profile/?name=${this.authorName}">
+                                        <h4>${this.authorName}</h4>
+                                        <div>${this.authorEmail}</div>
+                                    </a>
+                                </div>`
+        }
+        postContainer.append(postInfo)
 
-    const img = document.createElement("img");
-    if(postData.media) {
-        img.src = postData.media
+        const postBodyWrapper = document.createElement("a")
+        postBodyWrapper.href = `/post/?id=${this.postId}`
+        
+        const postTitle = document.createElement("h2");
+        postTitle.innerText = this.title
+        postBodyWrapper.append(postTitle)
+
+        const img = document.createElement("img");
+        if(this.img) {
+            img.src = this.img
+        }
+        img.classList.add("card-img-top");
+        postBodyWrapper.append(img);
+
+
+        const postBody = document.createElement("p");
+        postBody.innerText = this.body
+        postBodyWrapper.append(postBody)
+
+        postContainer.append(postBodyWrapper)
+        return postContainer
     }
 
-    img.classList.add("card-img-top");
-    cardBody.append(img);
+    /**
+     * Appends the post template to the specified parent element.
+     *
+     * @async
+     * @function
+     * @name appendToParrent
+     * @param {HTMLElement} parent - The parent element to append the post template to.
+     * @returns {Promise<void>}
+     */
+    async appendToParrent(parrent) {
+        parrent.append(await this.generateHTML())
+    }
 
-    const cardTitle = document.createElement("h3");
-    cardTitle.innerText = postData.title
-    cardBody.append(cardTitle)
+    /**
+     * Adds a click event listener to the delete button.
+     *
+     * @function
+     * @name delButtonListner
+     * @param {HTMLButtonElement} button - The delete button element.
+     * @returns {void}
+     */
+    delButtonListner(button) {
+        button.addEventListener("click", () => {
+            removePost(this.postId)
+        })
+    }
 
-
-    const cardText = document.createElement("p");
-    cardText.innerText = postData.body
-    cardBody.append(cardText)
-
-    return card
+    /**
+     * Adds a click event listener to the edit button.
+     *
+     * @function
+     * @name editButtonListner
+     * @param {HTMLButtonElement} button - The edit button element.
+     * @returns {void}
+     */
+    editButtonListner(button) {
+        button.addEventListener("click", () => {
+            console.log(this.postId)
+        })
+    }
 }
