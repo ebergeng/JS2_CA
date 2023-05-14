@@ -36,6 +36,7 @@ export class PostTemplate {
         postContainer.classList.add("card")
 
         const postInfo = document.createElement("div")
+        postInfo.classList.add("postHeading")
         if(this.authorEmail === await getLocalStoreEmail()) {
             const postInfoWrapper = document.createElement("div")
             const postProfileName = document.createElement("a")
@@ -72,6 +73,7 @@ export class PostTemplate {
         const img = document.createElement("img");
         if(this.img) {
             img.src = this.img
+            img.alt = `image for post with title ${this.title}`
         }
         img.classList.add("card-img-top");
         postBodyWrapper.append(img);
