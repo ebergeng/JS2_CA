@@ -14,5 +14,5 @@ export async function removePost (id) {
         const errorMessage = error.errors[0].message;
         throw new Error(errorMessage)
     }
-    return true
+    window.location.reload()
 }
