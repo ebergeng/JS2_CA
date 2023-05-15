@@ -1,21 +1,19 @@
-import * as page from "./pages/index.mjs"
+import { getPath } from "./helpers/path.mjs";
+import * as page from "./pages/index.mjs";
 
 
-const path = location.pathname
-console.log(path)
-switch(path){
+
+switch(getPath()){
     case "/profile/login/":
-        page.login()
-        break
+        page.login();
+        break;
     case "/profile/register/":
-        page.register()
-        break
+        page.register();
+        break;
     case "/feed/":
-        page.feed()
-        break
+        page.feed();
+        break;
     case "/profile/":
-        
-        page.profile()
-        break
-
+        page.profile();
+        break;
 }   

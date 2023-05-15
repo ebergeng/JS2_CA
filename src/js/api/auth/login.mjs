@@ -12,27 +12,24 @@ import { LOGIN_URL } from "../constants.mjs";
  */
 export async function login(profile) {
 
-
-    const options = {
-        headers: {
-            "Content-Type": "application/json"
-        },
-        method: "post",
-        body: JSON.stringify(profile)
+    let response;
+    try {
+        const options = {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "post",
+            body: JSON.stringify(profile)
+        }
+        response = await fetch(LOGIN_URL , options)   
+        if(!response.ok) {
+            const error = await response.json();
+            const errorMessage = error.errors[0].message;
+            throw new Error(errorMessage)
+        }
+    }catch(err){
+        console.log(err)
+    }finally {
+        return response
     }
-
-    const respons = await fetch(LOGIN_URL, options)
-
-    if(!respons.ok) {
-        const error = await respons.json();
-        const errorMessage = error.errors[0].message;
-        throw new Error(errorMessage)
-        
-    }
-    const result = await respons.json()
-    const {accessToken, ...user} = result
-    localStorage.setItem("token", accessToken)
-    localStorage.setItem("profile", JSON.stringify(user))
-    
-    return result
 }
