@@ -1,5 +1,5 @@
-import { loginFormListner } from "../components/eventlistners/formlistners/loginformlistner.mjs";
+import { loginFormListener } from "../eventlisteners/formlisteners/loginformlistener.mjs";
 
 export function login() {
-    loginFormListner();
+    loginFormListener()
 }

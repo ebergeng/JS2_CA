@@ -1,9 +1,9 @@
 
 import { getPosts } from "../api/post/read.mjs";
 import { getProfile } from "../api/profiles/profile.mjs";
-import { editButton } from "../components/eventlistners/buttonlistners/editProfileBtn.mjs";
-import { followButton } from "../components/eventlistners/buttonlistners/followbtn.mjs";
-import { updateFormListner } from "../components/eventlistners/formlistners/updateprofileform.mjs";
+import { updateFormListner } from "../eventlisteners/formlisteners/updateprofileform.mjs";
+import { editButton } from "../eventlisteners/buttonlisteners/editProfileBtn.mjs";
+import { followButton } from "../eventlisteners/buttonlisteners/followbtn.mjs";
 import { getLocalStoreName, load } from "../helpers/lokalstore.mjs";
 import { PostTemplate } from "../ui/post.mjs";
 import { profileTemplate } from "../ui/profile.mjs";
@@ -56,7 +56,7 @@ export async function profile() {
         editButton();
         updateFormListner();
 
-        profileName = await JSON.parse(load("profile"));
+        profileName = await JSON.parse(load("user"));
         profileName = profileName.name;
 
         profileTemplate(await getProfile(profileName));

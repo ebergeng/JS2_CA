@@ -12,24 +12,23 @@ import { LOGIN_URL } from "../constants.mjs";
  */
 export async function login(profile) {
 
-    let response;
-    try {
-        const options = {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "post",
-            body: JSON.stringify(profile)
+
+    const options = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        method: "post",
+        body: JSON.stringify(profile)
         }
-        response = await fetch(LOGIN_URL , options)   
-        if(!response.ok) {
-            const error = await response.json();
-            const errorMessage = error.errors[0].message;
-            throw new Error(errorMessage)
-        }
-    }catch(err){
-        console.log(err)
-    }finally {
-        return response
+        
+    const respons = await fetch(LOGIN_URL , options);
+    const json = await respons.json();
+
+    if(!respons.ok) {
+        const errorMessage = json.errors[0].message;
+        throw new Error(errorMessage)
     }
+
+    return json; 
+
 }

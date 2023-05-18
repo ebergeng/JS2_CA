@@ -1,4 +1,4 @@
-import { follow } from "../../../api/profiles/follow.mjs";
+import { follow } from "../../api/profiles/follow.mjs";
 
 
 export async function followButton(name) {

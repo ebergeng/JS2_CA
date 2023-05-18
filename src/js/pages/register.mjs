@@ -1,4 +1,4 @@
-import { registerFormListner } from "../components/eventlistners/formlistners/registerformlistner.mjs";
+import { registerFormListner } from "../eventlisteners/formlisteners/registerformlistener.mjs";
 
 
 

@@ -22,12 +22,13 @@ export async function register(profile) {
     }
 
     const respons = await fetch(REG_URL, options)
+    const json = await respons.json();
 
     if(!respons.ok) {
-        const error = await respons.json();
-        const errorMessage = error.errors[0].message;
+        const errorMessage = json.errors[0].message;
         throw new Error(errorMessage)
     }
-    
-    return await respons.json()
+
+    return json; 
+
 }

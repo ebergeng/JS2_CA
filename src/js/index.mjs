@@ -16,4 +16,10 @@ switch(getPath()){
     case "/profile/":
         page.profile();
         break;
+    case "/feed/post/edit/":
+        page.updatePost()
+        break
+    case "/feed/post/":
+        page.post()
+        break
 }   

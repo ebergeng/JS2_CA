@@ -1,5 +1,5 @@
-import { getPosts } from "../../../api/post/read.mjs";
-import { addPostsToFeed } from "../../../pages/feed.mjs";
+import { getPosts } from "../../api/post/read.mjs";
+import { addPostsToFeed } from "../../pages/feed.mjs";
 
 export async function genMorePosts() {
     const morePostBtn = document.querySelector("#morePostBtn");
