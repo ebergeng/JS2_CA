@@ -35,10 +35,33 @@
 
 
     <main class="flex-grow-1 mt-5">
-      <div class="row" id="postContainer">
+      
+      <div class="container">
+        <h1>Feed</h1>
+        <div class="container col card mt-5" id="createPostContainer">
+          <div class="card-body">
+            <h2>Whats on your mind?</h2>
+            <form class="d-flex flex-column justify-content-center align-items-center gap-2" id="postForm">
+              <input class="form-control" type="text" name="title" placeholder="Title of new post" required>
+              <textarea name="body" class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Write somthing.." required></textarea>
+              <div class="input-group">
+                <label class="input-group-text d-none" for="inputGroupFile01">Upload</label>
+                <input type="url" name="media" class="form-control rounded-3" id="inputGroupFile01" placeholder="Media Url">
+              </div>
+              <button class="btn btn-primary col-md-5 col-12 m-2" type="submit">Submit</button>
+            </form>
+
+          </div>
+
+
+        </div>
       </div>
-      <div class="row">
-        <button class="btn btn-primary" id="morePostBtn">More Posts</button>
+      <div class="container" id="postContainer">
+        <h2>Blog Posts:</h2>
+        <div id="message"></div>
+      </div>
+      <div class="container col-md-5 col-12 p-2">
+        <button class="btn btn-primary col-12" id="morePostBtn">More Posts</button>
       </div>
     </main>
     <script type="module" src="/src/js/index.mjs"></script>

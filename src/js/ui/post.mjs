@@ -1,4 +1,5 @@
 import { removePost } from "../api/post/delete.mjs";
+import { getPost } from "../api/post/read.mjs";
 import { getLocalStoreEmail } from "../helpers/lokalstore.mjs";
 
 /**
@@ -38,6 +39,7 @@ export class PostTemplate {
         const postInfo = document.createElement("div");
         postInfo.classList.add("postHeading");
         if(this.authorEmail === await getLocalStoreEmail()) {
+            console.log("hey")
             const postInfoWrapper = document.createElement("div");
             
             const postProfileName = document.createElement("a");
@@ -69,7 +71,7 @@ export class PostTemplate {
         const postBodyWrapper = document.createElement("a");
         postBodyWrapper.href = `/post/?id=${this.postId}`;
         
-        const postTitle = document.createElement("h2");
+        const postTitle = document.createElement("h4");
         postTitle.innerText = this.title;
         postBodyWrapper.append(postTitle);
 
@@ -128,8 +130,8 @@ export class PostTemplate {
      * @returns {void}
      */
     editButtonListner(button) {
-        button.addEventListener("click", () => {
-            console.log(this.postId);
+        button.addEventListener("click", async ()  => {
+            location.href = `/feed/post/edit?id=${this.postId}`
         })
     };
 }

@@ -1,4 +1,5 @@
-import { register } from "../../../api/auth/register.mjs";
+import { register } from "../../api/auth/register.mjs";
+import displayMessage from "../../ui/common/displayMessage.mjs";
 
 /**
  * Registers a form listener on the #registerForm element that listens for a submit event.
@@ -21,9 +22,20 @@ export async function registerFormListner() {
         const form = event.target;
         const formData = new FormData(form);
         const profile = Object.fromEntries(formData.entries());
+
+        form.querySelector("fieldset").disabled = true; 
         
+        try {
+            const response = await register(profile);
+            displayMessage("success ", "Success!",  "#message")
+        }catch(err) {
+            console.log(err)
+            displayMessage("danger", err,  "#message")
+        }
+        finally {
+            form.querySelector("fieldset").disabled = false; 
+        }
         
-        const response = await register(profile);
         if(response){
             window.location = "/profile/login"
         }

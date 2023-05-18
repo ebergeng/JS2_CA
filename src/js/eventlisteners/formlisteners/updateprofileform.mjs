@@ -1,5 +1,5 @@
-import { edit } from "../../../api/profiles/edit.mjs";
-import { getLocalStoreName } from "../../../helpers/lokalstore.mjs";
+import { edit } from "../../api/profiles/edit.mjs";
+import { getLocalStoreName } from "../../helpers/lokalstore.mjs";
 
 export async function updateFormListner() {
     const form = document.querySelector("#updateForm");

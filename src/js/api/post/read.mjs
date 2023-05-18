@@ -1,6 +1,6 @@
 import { getHeader } from "../../helpers/header.mjs";
 import { getPath } from "../../helpers/path.mjs";
-import { PROFILE_URL } from "../constants.mjs";
+import { GET_SINGEL_POST_URL, PROFILE_URL } from "../constants.mjs";
 import { POST_URL } from "../constants.mjs";
 
 
@@ -37,6 +37,24 @@ export async function getPosts (limit=0, offset=0, profileName) {
 
     const respons = await fetch(postUrl , options);
     
+    if(!respons.ok) {
+        const error = await respons.json();
+        const errorMessage = error.errors[0].message;
+        throw new Error(errorMessage);
+    }
+    return await respons.json();
+}
+
+
+
+export async function getPost (id) {
+    const options = {
+        headers : getHeader(),
+        method: "GET"
+    }
+
+    const respons = await fetch(GET_SINGEL_POST_URL + id + "?&_author=true&_comments=true" , options);
+    console.log(GET_SINGEL_POST_URL + id)
     if(!respons.ok) {
         const error = await respons.json();
         const errorMessage = error.errors[0].message;
