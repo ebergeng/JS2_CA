@@ -69,7 +69,7 @@ export class PostTemplate {
         postContainer.append(postInfo);
 
         const postBodyWrapper = document.createElement("a");
-        postBodyWrapper.href = `/post/?id=${this.postId}`;
+        postBodyWrapper.href = `/feed/post/?id=${this.postId}`;
         
         const postTitle = document.createElement("h4");
         postTitle.innerText = this.title;
@@ -131,7 +131,7 @@ export class PostTemplate {
      */
     editButtonListner(button) {
         button.addEventListener("click", async ()  => {
-            location.href = `/feed/post/edit?id=${this.postId}`
+            window.location = `/feed/post/edit/?id=${this.postId}`
         })
     };
 }
