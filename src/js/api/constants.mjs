@@ -7,3 +7,4 @@ export const CREATE_POST_URL = `${BASE}/posts`
 export const DELETE_POST_URL = `${BASE}/posts/`
 export const UPDATE_POST_URL = `${BASE}/posts/`
 export const PROFILE_URL = `${BASE}/profiles/`
+export const NEW_COMMENT_URL = `${BASE}/posts/`
