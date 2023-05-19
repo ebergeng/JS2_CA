@@ -1,14 +1,16 @@
 import { getPost } from "../api/post/read.mjs";
+import { createCommentFormListener } from "../eventlisteners/formlisteners/createcommentlistener.mjs";
 import { getParams } from "../helpers/params.mjs";
 import { PostTemplate } from "../ui/post.mjs";
 
 
-export function addPostsToPage(post) {
+export async function addPostsToPage(post) {
     const postContainer = document.querySelector("#postContainer")
+
+
     const newPost = new PostTemplate(post);
-    newPost.appendToParrent(postContainer);
-
-
+    await newPost.appendToParrent(postContainer);
+    newPost.addComments()
 }
 
 export async function post() {
@@ -16,4 +18,5 @@ export async function post() {
     const post = await getPost(postID)
     console.log(post)
     addPostsToPage(post)
+    createCommentFormListener()
 }

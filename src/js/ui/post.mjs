@@ -1,5 +1,4 @@
 import { removePost } from "../api/post/delete.mjs";
-import { getPost } from "../api/post/read.mjs";
 import { getLocalStoreEmail } from "../helpers/lokalstore.mjs";
 
 /**
@@ -16,13 +15,16 @@ import { getLocalStoreEmail } from "../helpers/lokalstore.mjs";
  * @param {string} postData.media - The media URL of the post.
  */
 export class PostTemplate {
-    constructor (postData) {
+     constructor (postData) {
+        this.postContainer = document.createElement("div");
+        console.log(postData.comments)
         this.postId = postData.id;
         this.title = postData.title;
         this.body = postData.body;
         this.authorName = postData.author.name;
         this.authorEmail = postData.author.email;
         this.img = postData.media;
+        this.comments = postData.comments
     }
     /**
      * Generates the HTML for the post template.
@@ -33,8 +35,7 @@ export class PostTemplate {
      * @returns {Promise<HTMLDivElement>} - The post template HTML element.
      */
     async generateHTML() {
-        const postContainer = document.createElement("div");
-        postContainer.classList.add("card");
+        this.postContainer.classList.add("card");
 
         const postInfo = document.createElement("div");
         postInfo.classList.add("postHeading");
@@ -66,7 +67,7 @@ export class PostTemplate {
                                     </a>
                                 </div>`;
         }
-        postContainer.append(postInfo);
+        this.postContainer.append(postInfo);
 
         const postBodyWrapper = document.createElement("a");
         postBodyWrapper.href = `/feed/post/?id=${this.postId}`;
@@ -88,9 +89,13 @@ export class PostTemplate {
         postBody.innerText = this.body;
         postBodyWrapper.append(postBody);
 
-        postContainer.append(postBodyWrapper);
-        return postContainer;
+ 
+
+        this.postContainer.append(postBodyWrapper);
+      
+        return this.postContainer;
     }
+
 
     /**
      * Appends the post template to the specified parent element.
@@ -103,9 +108,27 @@ export class PostTemplate {
      */
     async appendToParrent(parrent) {
         parrent.append(await this.generateHTML());
+        
     }
 
+    addComments() {
+        this.comments.forEach(comment => {
+            const commentContainer = document.createElement("div");
+            commentContainer.classList.add("card", "p-2");
+    
+            const profileInfo = document.createElement("h5");
+            profileInfo.classList.add("col", "m-1");
+            profileInfo.innerText = comment.owner
+            commentContainer.append(profileInfo)
+    
+            const commentBody = document.createElement("div");
+            commentBody.classList.add("col", "ms-3");
+            commentContainer.append(commentBody)
+            commentBody.innerText = comment.body
 
+            this.postContainer.append(commentContainer)
+        })
+    }
 
     /**
      * Adds a click event listener to the delete button.
