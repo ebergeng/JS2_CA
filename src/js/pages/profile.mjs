@@ -7,6 +7,9 @@ import { followButton } from "../eventlisteners/buttonlisteners/followbtn.mjs";
 import { getLocalStoreName, load } from "../helpers/lokalstore.mjs";
 import { PostTemplate } from "../ui/post.mjs";
 import { profileTemplate } from "../ui/profile.mjs";
+import { loginStatus } from "../api/auth/loginstatus.mjs";
+import { logOut } from "../helpers/logout.mjs";
+import { logOutlistener } from "../eventlisteners/buttonlisteners/logoutbtn.mjs";
 
 /**
  * Adds an array of posts to the profile page.
@@ -43,25 +46,33 @@ export function addPostsToProfile(posts) {
  *
  */
 export async function profile() {
+    if(await loginStatus()) {
+        logOutlistener()
 
-    const urlParams = new URLSearchParams(window.location.search);
-    let profileName = urlParams.get('name');
+        const urlParams = new URLSearchParams(window.location.search);
+        let profileName = urlParams.get('name');
+        
+        if(profileName) {
+            profileTemplate(await getProfile(profileName));
+            const posts = await getPosts(0, 0, profileName);
+            addPostsToProfile(posts);
+        }
+        else {
+            editButton();
+            updateFormListner();
     
-    if(profileName) {
-        profileTemplate(await getProfile(profileName));
-        const posts = await getPosts(0, 0, profileName);
-        addPostsToProfile(posts);
-    }
-    else {
-        editButton();
-        updateFormListner();
+            profileName = await JSON.parse(load("user"));
+            profileName = profileName.name;
+    
+            profileTemplate(await getProfile(profileName));
+            const posts =await getPosts(0, 0, await getLocalStoreName());
+            addPostsToProfile(posts);
+        }
+        followButton(profileName);
 
-        profileName = await JSON.parse(load("user"));
-        profileName = profileName.name;
-
-        profileTemplate(await getProfile(profileName));
-        const posts =await getPosts(0, 0, await getLocalStoreName());
-        addPostsToProfile(posts);
+    }else {
+        logOut()
     }
-    followButton(profileName);
+
+
 }

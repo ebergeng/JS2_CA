@@ -17,7 +17,6 @@ import { getLocalStoreEmail } from "../helpers/lokalstore.mjs";
 export class PostTemplate {
      constructor (postData) {
         this.postContainer = document.createElement("div");
-        console.log(postData.comments)
         this.postId = postData.id;
         this.title = postData.title;
         this.body = postData.body;
