@@ -1,6 +1,7 @@
 import { getPosts } from "../api/post/read.mjs";
 import { genMorePosts } from "../eventlisteners/buttonlisteners/morepostbtn.mjs";
 import { createFormListener } from "../eventlisteners/formlisteners/createpostformlistener.mjs";
+import { searchListener } from "../eventlisteners/searchlistener/searchlistener.mjs";
 import displayMessage from "../ui/common/displayMessage.mjs";
 import { PostTemplate } from "../ui/post.mjs";
 
@@ -24,20 +25,16 @@ export function addPostsToFeed(posts) {
 
 export async function feed() {
     try {
-        const posts = await getPosts(9, 0);
-        addPostsToFeed(posts);
+        const posts = await getPosts(99, 0);
+        addPostsToFeed(posts)
+        searchListener(posts);
+       
     }
     catch (err) {
         console.log(err)
         displayMessage("danger", err,  "#message")
     }
+
     genMorePosts();
-    createFormListener()
-
-
-
-
-    
-    
-    
+    createFormListener();
 }
