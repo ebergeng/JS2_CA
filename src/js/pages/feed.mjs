@@ -1,6 +1,10 @@
+import { loginStatus } from "../api/auth/loginstatus.mjs";
 import { getPosts } from "../api/post/read.mjs";
+import { logOutlistener } from "../eventlisteners/buttonlisteners/logoutbtn.mjs";
 import { genMorePosts } from "../eventlisteners/buttonlisteners/morepostbtn.mjs";
 import { createFormListener } from "../eventlisteners/formlisteners/createpostformlistener.mjs";
+import { searchListener } from "../eventlisteners/searchlistener/searchlistener.mjs";
+import { logOut } from "../helpers/logout.mjs";
 import displayMessage from "../ui/common/displayMessage.mjs";
 import { PostTemplate } from "../ui/post.mjs";
 
@@ -23,21 +27,22 @@ export function addPostsToFeed(posts) {
 
 
 export async function feed() {
-    try {
-        const posts = await getPosts(9, 0);
-        addPostsToFeed(posts);
+    if(await loginStatus()) {
+        logOutlistener()
+        try {
+            const posts = await getPosts(99, 0);
+            addPostsToFeed(posts)
+            searchListener(posts);
+           
+        }
+        catch (err) {
+            console.log(err)
+            displayMessage("danger", err,  "#message")
+        }
+    
+        genMorePosts();
+        createFormListener();
+    }else {
+        logOut()
     }
-    catch (err) {
-        console.log(err)
-        displayMessage("danger", err,  "#message")
-    }
-    genMorePosts();
-    createFormListener()
-
-
-
-
-    
-    
-    
 }

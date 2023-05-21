@@ -2,8 +2,10 @@ import { getPath } from "./helpers/path.mjs";
 import * as page from "./pages/index.mjs";
 
 
-
-switch(getPath()){
+switch(getPath()){  
+    case "/", "/index.html":
+        location.href = "/feed/";
+        break;
     case "/profile/login/":
         page.login();
         break;
@@ -17,9 +19,9 @@ switch(getPath()){
         page.profile();
         break;
     case "/feed/post/edit/":
-        page.updatePost()
-        break
+        page.updatePost();
+        break;
     case "/feed/post/":
-        page.post()
-        break
+        page.post();
+        break;
 }   

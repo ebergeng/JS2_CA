@@ -24,11 +24,11 @@ export async function updatePostFormListener(id){
             await editPost(formInput, id)
             form.querySelector("fieldset").disabled = false; 
             submitButton.disabled = true;
-            displayMessage("success ", "Post successfully updated", "#message")
+            displayMessage("success ", "Post successfully updated", "#message");
 
         }catch (err) {
-            console.log(err)
-            displayMessage("danger ", err, "#message")
+            console.log(err);
+            displayMessage("danger ", err, "#message");
         }
     })
 

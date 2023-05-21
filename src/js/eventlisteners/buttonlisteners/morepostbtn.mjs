@@ -4,10 +4,10 @@ import { addPostsToFeed } from "../../pages/feed.mjs";
 export async function genMorePosts() {
     const morePostBtn = document.querySelector("#morePostBtn");
 
-    let numberOfpost = 6;
+    let numberOfpost = 99;
     morePostBtn.addEventListener("click", async () => {
-        numberOfpost += 6;
-        const posts = await getPosts(6, numberOfpost);
+        numberOfpost += 9;
+        const posts = await getPosts(9, numberOfpost);
         addPostsToFeed(posts);
         
     })
