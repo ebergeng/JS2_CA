@@ -27,17 +27,17 @@ export async function registerFormListner() {
         
         try {
             const response = await register(profile);
-            displayMessage("success ", "Success!",  "#message")
+            displayMessage("success ", "Success!",  "#message");
         }catch(err) {
             console.log(err)
-            displayMessage("danger", err,  "#message")
+            displayMessage("danger", err,  "#message");
         }
         finally {
             form.querySelector("fieldset").disabled = false; 
         }
         
         if(response){
-            window.location = "/profile/login"
+            window.location = "/profile/login";
         }
     })
 }

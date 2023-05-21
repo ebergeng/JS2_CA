@@ -1,6 +1,13 @@
 import { getHeader } from "../../helpers/header.mjs";
 import { DELETE_POST_URL } from "../constants.mjs";
 
+
+/**
+ * Removes a post with the specified ID.
+ * @param {string} id - The ID of the post to be removed.
+ * @throws {Error} If the removal of the post fails, an error with the corresponding error message is thrown.
+ * @returns {void}
+ */
 export async function removePost (id) {
     
     const options = {
