@@ -23,7 +23,6 @@ export async function loginFormListener() {
         const profile = Object.fromEntries(formData.entries());
 
         form.querySelector("fieldset").disabled = true; 
-        form.querySelector("fieldset").innerText = "Logging in..."; 
         
         try {
             const {accessToken, ...user} = await login(profile)
@@ -36,7 +35,6 @@ export async function loginFormListener() {
         }
         finally {
             form.querySelector("fieldset").disabled = false ;
-            form.querySelector("fieldset").innerText = "Log in"; 
         }
     })
 }
